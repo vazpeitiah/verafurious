@@ -3,17 +3,54 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Los 5 Furiosos.">
-  <div class="navbar bg-base-100 mx-auto max-w-4xl">
-    <a class="btn btn-ghost text-xl" href="/">5 Furiosos</a>
+  <div class="bg-base-100 w-full shadow-md">
+    <div class="navbar max-w-4xl mx-auto">
+      <div class="navbar-start">
+        <a class="btn btn-ghost text-xl" href="/verafurious">5 Furiosos</a>
+      </div>
+      <div class="navbar-end">
+        <a
+          target="_blank"
+          class="btn btn-primary btn-sm"
+          href="https://teams.microsoft.com/l/meetup-join/19%3ameeting_Y2FkZmE5MzUtN2M0ZS00MjQxLTg4Y2YtMDExODY5MmQyYWI2%40thread.v2/0?context=%7b%22Tid%22%3a%2233110dac-5207-4c0b-9d43-b040918278b7%22%2c%22Oid%22%3a%223f477b8d-af47-41fb-bda4-7c282304f024%22%7d"
+        >
+          <!--?xml version="1.0" encoding="UTF-8"?-->
+          <svg
+            width="24px"
+            height="24px"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class=" fill-base-100 size-4"
+            ><path
+              d="M15 12V16.4C15 16.7314 14.7314 17 14.4 17H3.6C3.26863 17 3 16.7314 3 16.4V7.6C3 7.26863 3.26863 7 3.6 7H14.4C14.7314 7 15 7.26863 15 7.6V12ZM15 12L20.0159 7.82009C20.4067 7.49443 21 7.77232 21 8.28103V15.719C21 16.2277 20.4067 16.5056 20.0159 16.1799L15 12Z"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path></svg
+          >
+          Unirme a la reunión
+        </a>
+      </div>
+    </div>
   </div>
-  <div>
+  <div class="max-w-4xl mx-auto flex flex-col py-10 gap-4">
+    <h1 class="text-2xl text-center font-bold">
+      ¿A quién le toca poner la vera daily?
+    </h1>
     <ul class="timeline timeline-vertical" id="weeks"></ul>
   </div>
 </Layout>
 
 <script>
   import clsx from "clsx";
-  import { addWeeks, startOfWeek, addMonths, subDays, subWeeks } from "date-fns";
+  import {
+    addWeeks,
+    startOfWeek,
+    addMonths,
+    subDays,
+    subWeeks,
+  } from "date-fns";
 
   const fourious = [
     {
@@ -47,15 +84,15 @@ import Layout from "../layouts/Layout.astro";
 
   const weeks = [];
 
-	let fouriousIndex = 0;
+  let fouriousIndex = 0;
   while (startDate < endDate) {
     weeks.push({
       start: startDate,
       end: subDays(addWeeks(startDate, 1), 1),
-			assigned: fourious[fouriousIndex % fourious.length],
+      assigned: fourious[fouriousIndex % fourious.length],
     });
     startDate = addWeeks(startDate, 1);
-		fouriousIndex++;
+    fouriousIndex++;
   }
 
   fourious.sort((a, b) => a.ordinal - b.ordinal);
