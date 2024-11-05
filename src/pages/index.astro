@@ -50,6 +50,7 @@ import Layout from "../layouts/Layout.astro";
     addMonths,
     subDays,
     subWeeks,
+addDays,
   } from "date-fns";
 
   const fourious = [
@@ -87,8 +88,8 @@ import Layout from "../layouts/Layout.astro";
   let fouriousIndex = 0;
   while (startDate < endDate) {
     weeks.push({
-      start: startDate,
-      end: subDays(addWeeks(startDate, 1), 1),
+      start: addDays(startDate, 1),
+      end: subDays(addWeeks(startDate, 1), 2),
       assigned: fourious[fouriousIndex % fourious.length],
     });
     startDate = addWeeks(startDate, 1);
