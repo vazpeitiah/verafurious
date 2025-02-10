@@ -53,50 +53,46 @@ import Layout from "../layouts/Layout.astro";
 addDays,
   } from "date-fns";
 
-  const fourious = [
+  const furious = [
     {
-      name: "Vladimir Azpeitia",
+      name: "Raul Medina",
       ordinal: 1,
     },
     {
-      name: "Luis Rodriguez",
+      name: "Jair Bautista",
       ordinal: 2,
     },
     {
-      name: "Nestor Valencia",
+      name: "Fransico Salgado",
       ordinal: 3,
     },
     {
-      name: "Raul Medina",
+      name: "Vladimir Azpeitia",
       ordinal: 4,
     },
     {
-      name: "Jair Bautista",
-      ordinal: 6,
-    },
-    {
-      name: "Fransico Salgado",
+      name: "Luis Rodriguez",
       ordinal: 5,
     },
   ];
 
-  let startDate = startOfWeek(new Date("2024-09-23"));
+  let startDate = startOfWeek(new Date("2025-02-10"));
   const endDate = addMonths(new Date(), 1);
 
   const weeks = [];
 
-  let fouriousIndex = 0;
+  let furiousIndex = 0;
   while (startDate < endDate) {
     weeks.push({
       start: addDays(startDate, 1),
       end: subDays(addWeeks(startDate, 1), 2),
-      assigned: fourious[fouriousIndex % fourious.length],
+      assigned: furious[furiousIndex % furious.length],
     });
     startDate = addWeeks(startDate, 1);
-    fouriousIndex++;
+    furiousIndex++;
   }
 
-  fourious.sort((a, b) => a.ordinal - b.ordinal);
+  furious.sort((a, b) => a.ordinal - b.ordinal);
 
   const dateIsBetween = (date: Date, start: Date, end: Date) => {
     return date >= start && date <= end;
@@ -130,7 +126,7 @@ addDays,
 						fill="currentColor"
 						class="${clsx(
               "h-5 w-5",
-              dateIsBetween(new Date(), week.start, week.end)
+              dateIsBetween(new Date(new Date().setHours(0)), week.start, week.end)
                 ? "text-primary"
                 : "text-base-content"
             )}"
@@ -144,7 +140,7 @@ addDays,
 				</div>
 				<hr
 					class="${clsx(
-            dateIsBetween(new Date(), week.start, week.end) ? "bg-primary" : ""
+            dateIsBetween(new Date(new Date().setHours(0)), week.start, week.end) ? "bg-primary" : ""
           )}"
 				/>
 			</li>
