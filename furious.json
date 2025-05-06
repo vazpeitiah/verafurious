@@ -1,0 +1,22 @@
+{
+  "totalWeeks": 8,
+  "meetingUrl": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_Y2FkZmE5MzUtN2M0ZS00MjQxLTg4Y2YtMDExODY5MmQyYWI2%40thread.v2/0?context=%7b%22Tid%22%3a%2233110dac-5207-4c0b-9d43-b040918278b7%22%2c%22Oid%22%3a%223f477b8d-af47-41fb-bda4-7c282304f024%22%7d",
+  "furious": [
+    {
+      "name": "Vladimir Azpeitia",
+      "ordinal": 1
+    },
+    {
+      "name": "Luis Rodríguez",
+      "ordinal": 2
+    },
+    {
+      "name": "Raul Medina",
+      "ordinal": 3
+    },
+    {
+      "name": "Jair Baustista",
+      "ordinal": 4
+    }
+  ]
+}
