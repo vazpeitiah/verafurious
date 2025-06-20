@@ -6,11 +6,9 @@ import clsx from "clsx";
 const TimeLine = () => {
   const items = generateCalendar(
     data.furious.map((f) => ({ ...f, id: nanoid() })),
-    new Date(2025, 4, 5),
+    new Date(2025, 5, 20),
     data.totalWeeks
   );
-
-  console.log("items", items);
 
   return (
     <ul className="timeline timeline-vertical">
