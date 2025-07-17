@@ -4,23 +4,23 @@
   "furious": [
     {
       "name": "Vladimir Azpeitia",
-      "ordinal": 3
-    },
-    {
-      "name": "Luis Rodríguez",
       "ordinal": 4
     },
     {
-      "name": "Fabian Rojas",
+      "name": "Francisco Lazcano",
       "ordinal": 5
     },
     {
+      "name": "Fabian Rojas",
+      "ordinal": 1
+    },
+    {
       "name": "Raul Medina",
-      "ordinal":1
+      "ordinal":2
     },
     {
       "name": "Jair Baustista",
-      "ordinal": 2
+      "ordinal": 3
     }
   ]
 }

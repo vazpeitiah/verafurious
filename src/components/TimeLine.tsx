@@ -6,7 +6,7 @@ import clsx from "clsx";
 const TimeLine = () => {
   const items = generateCalendar(
     data.furious.map((f) => ({ ...f, id: nanoid() })),
-    new Date(2025, 5, 20),
+    new Date(2025, 6, 17),
     data.totalWeeks
   );
 
