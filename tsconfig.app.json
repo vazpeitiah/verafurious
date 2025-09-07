@@ -26,7 +26,8 @@
     "paths": {
       "@/*": ["src/*"],
       "@furious": ["furious.json"]
-    }
+    },
+    "types": ["vitest/globals"]
   },
   "include": ["src"]
 }
