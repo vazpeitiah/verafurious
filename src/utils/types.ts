@@ -4,9 +4,7 @@ export type Employee = {
   ordinal: number;
 };
 
-export type CalendarItem = {
-  begin: Date;
+export type DateRange = {
+  start: Date;
   end: Date;
-  employee: Employee;
-  isCurrentWeek: boolean;
 };

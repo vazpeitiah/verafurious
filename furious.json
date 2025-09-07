@@ -1,26 +1,30 @@
 {
-  "totalWeeks": 8,
   "meetingUrl": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_Y2FkZmE5MzUtN2M0ZS00MjQxLTg4Y2YtMDExODY5MmQyYWI2%40thread.v2/0?context=%7b%22Tid%22%3a%2233110dac-5207-4c0b-9d43-b040918278b7%22%2c%22Oid%22%3a%223f477b8d-af47-41fb-bda4-7c282304f024%22%7d",
+  "startDate": "2025-09-08T06:00:00Z",
   "furious": [
     {
       "name": "Vladimir Azpeitia",
-      "ordinal": 4
-    },
-    {
-      "name": "Francisco Lazcano",
-      "ordinal": 5
-    },
-    {
-      "name": "Fabian Rojas",
       "ordinal": 1
     },
     {
+      "name": "Francisco Lazcano",
+      "ordinal": 2
+    },
+    {
+      "name": "Fabian Rojas",
+      "ordinal": 3
+    },
+    {
       "name": "Raul Medina",
-      "ordinal":2
+      "ordinal":4
     },
     {
       "name": "Jair Baustista",
-      "ordinal": 3
+      "ordinal": 5
+    }, 
+    {
+      "name": "Eduardo Bautista",
+      "ordinal": 6
     }
   ]
 }
