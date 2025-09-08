@@ -1,19 +1,27 @@
 import { getWeeksAround } from "@/utils/helpers";
-import type { DateRange } from "@/utils/types";
+import type { DateRange, Furious } from "@/utils/types";
 import { addWeeks, subWeeks } from "date-fns";
 import { create } from "zustand";
 
-import { startDate } from "@furious";
+interface Configs {
+  furious: Furious[];
+  startDate: Date;
+  meetingUrl: string;
+  weeksSize: number;
+}
 
 interface TimelineState {
   selectedDate: Date;
   weeks: DateRange[];
+  furious: Furious[];
+  startDate: Date;
+  meetingUrl: string;
   weeksSize: number;
   actions: {
-    moveOneWeekAgo: () => void;
-    moveOneWeekForward: () => void;
+    moveOneWeekAgo: (startDate: Date) => void;
+    moveOneWeekForward: (startDate: Date) => void;
     resetToCurrentWeek: () => void;
-    configureWeeks: (size: number) => void;
+    configureWeeks: (config: Configs) => void;
   };
 }
 
@@ -21,20 +29,23 @@ const useTimelineStore = create<TimelineState>()((set) => {
   const updateWeeks = (
     selectedDate: Date,
     weeksSize: number,
-    startDate: string
-  ) => getWeeksAround(selectedDate, weeksSize, new Date(startDate));
+    startDate: Date
+  ) => getWeeksAround(selectedDate, weeksSize, startDate);
 
   return {
+    startDate: new Date(),
+    furious: [],
+    meetingUrl: "#",
     selectedDate: new Date(),
-    weeks: getWeeksAround(new Date(), 3, new Date(startDate)),
-    weeksSize: 3,
+    weeks: [],
+    weeksSize: 0,
     actions: {
       moveOneWeekAgo: () =>
         set((state) => {
           const newDate = subWeeks(state.selectedDate, 1);
           return {
             selectedDate: newDate,
-            weeks: updateWeeks(newDate, state.weeksSize, startDate),
+            weeks: updateWeeks(newDate, state.weeksSize, state.startDate),
           };
         }),
       moveOneWeekForward: () =>
@@ -42,18 +53,20 @@ const useTimelineStore = create<TimelineState>()((set) => {
           const newDate = addWeeks(state.selectedDate, 1);
           return {
             selectedDate: newDate,
-            weeks: updateWeeks(newDate, state.weeksSize, startDate),
+            weeks: updateWeeks(newDate, state.weeksSize, state.startDate),
           };
         }),
       resetToCurrentWeek: () =>
         set((state) => ({
           selectedDate: new Date(),
-          weeks: updateWeeks(new Date(), state.weeksSize, startDate),
+          weeks: updateWeeks(new Date(), state.weeksSize, state.startDate),
         })),
-      configureWeeks: (size: number) => {
+      configureWeeks: ({ weeksSize, furious, meetingUrl, startDate }) => {
         set((state) => ({
-          weeksSize: size,
-          weeks: updateWeeks(state.selectedDate, size, startDate),
+          weeksSize,
+          furious,
+          meetingUrl,
+          weeks: updateWeeks(state.selectedDate, weeksSize, startDate),
         }));
       },
     },
@@ -64,6 +77,10 @@ export const useSelectedDate = () =>
   useTimelineStore((state) => state.selectedDate);
 export const useWeeksSize = () => useTimelineStore((state) => state.weeksSize);
 export const useWeeks = () => useTimelineStore((state) => state.weeks);
+export const useStartDate = () => useTimelineStore((state) => state.startDate);
+export const useMeetingUrl = () =>
+  useTimelineStore((state) => state.meetingUrl);
+export const useFurious = () => useTimelineStore((state) => state.furious);
 
 export const useTimelineActions = () =>
   useTimelineStore((state) => state.actions);

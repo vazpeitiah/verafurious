@@ -8,6 +8,7 @@ import type { DateRange } from "@/utils/types";
 
 import TimelineIcon from "./TimelineIcon";
 import { calculateFurious } from "@/utils/furious";
+import { useFurious, useStartDate } from "@/store/timeline";
 
 interface TimelineItemProps {
   range: DateRange;
@@ -16,6 +17,8 @@ interface TimelineItemProps {
 }
 
 const TimelineItem = ({ range, index, isLast }: TimelineItemProps) => {
+  const startDate = useStartDate();
+  const furious = useFurious();
   const currentRange = isDateBetween(range, new Date());
   const isPastRange = isPast(range.end);
 
@@ -37,7 +40,7 @@ const TimelineItem = ({ range, index, isLast }: TimelineItemProps) => {
         <time className="font-mono italic text-sm">{formatRange(range)}</time>
         <div className="text-xl font-black flex items-center gap-3">
           {currentRange ? <Panda /> : <User />}
-          {calculateFurious(range)}
+          {calculateFurious(furious, startDate, range)}
         </div>
       </div>
       {!isLast && (

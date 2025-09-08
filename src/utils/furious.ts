@@ -1,9 +1,7 @@
 import { addWeeks, subWeeks } from "date-fns";
 
-import type { DateRange } from "./types";
+import type { DateRange, Furious } from "./types";
 import { isDateBetween } from "./helpers";
-
-import { furious, startDate } from "@furious";
 
 /**
  * Generates a sequence of dates based on the provided parameters.
@@ -17,6 +15,7 @@ import { furious, startDate } from "@furious";
  * @returns An array of `Date` objects representing the generated sequence.
  */
 const generatePath = (
+  startDate: Date,
   ordinal: number,
   total: number,
   boundaryDate: Date,
@@ -36,13 +35,23 @@ const generatePath = (
   return path;
 };
 
-export const calculateFurious = (range: DateRange): string => {
+export const calculateFurious = (
+  furious: Furious[],
+  startDate: Date,
+  range: DateRange
+): string => {
   const total = furious.length;
   const isPositive = range.end > new Date(startDate);
   const boundaryDate = isPositive ? range.end : range.start;
 
   for (const item of furious) {
-    const path = generatePath(item.ordinal, total, boundaryDate, isPositive);
+    const path = generatePath(
+      startDate,
+      item.ordinal ?? 0,
+      total,
+      boundaryDate,
+      isPositive
+    );
     if (path.some((date) => isDateBetween(range, date))) {
       return item.name;
     }

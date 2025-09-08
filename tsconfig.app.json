@@ -24,8 +24,7 @@
     "noUncheckedSideEffectImports": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@furious": ["furious.json"]
+      "@/*": ["src/*"]
     },
     "types": ["vitest/globals"]
   },
