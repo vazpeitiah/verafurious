@@ -26,3 +26,10 @@ export const appConfigSchema = z
   }));
 
 export type AppConfig = z.infer<typeof appConfigSchema>;
+
+export const authCredentialsSchema = z.object({
+  email: z.email(),
+  password: z.string().min(6),
+});
+
+export type AuthCredentials = z.infer<typeof authCredentialsSchema>;

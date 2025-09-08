@@ -90,3 +90,24 @@ export const formatRange = (
   }
   return `${customFormatDate(range.start)} - ${customFormatDate(range.end)}`;
 };
+
+export const writeLocalStorage = <T>(key: string, value: T) => {
+  try {
+    const serializedValue = JSON.stringify(value);
+    localStorage.setItem(key, serializedValue);
+  } catch {
+    // Handle write errors if necessary
+  }
+};
+
+export const readLocalStorage = <T>(key: string, initialValue: T): T => {
+  try {
+    const serializedValue = localStorage.getItem(key);
+    if (serializedValue === null) {
+      return initialValue;
+    }
+    return JSON.parse(serializedValue) as T;
+  } catch {
+    return initialValue;
+  }
+};

@@ -8,8 +8,11 @@ import {
 } from "@/store/timeline";
 
 import { startOfWeek, subWeeks } from "date-fns";
+import { useAuthActions } from "@/store/auth";
+import { redirect } from "@tanstack/react-router";
 
 const Controls = () => {
+  const { logout } = useAuthActions();
   const weeks = useWeeks();
   const startDate = useStartDate();
   const meetingUrl = useMeetingUrl();
@@ -22,6 +25,11 @@ const Controls = () => {
       weekStartsOn: 1,
     }
   );
+
+  const handleLogout = () => {
+    logout();
+    redirect({ to: "/login" });
+  };
 
   return (
     <div className="flex gap-4 items-center justify-center">
@@ -48,6 +56,9 @@ const Controls = () => {
       >
         Open Daily
       </a>
+      <button className="btn btn-ghost" onClick={handleLogout}>
+        Logout
+      </button>
     </div>
   );
 };

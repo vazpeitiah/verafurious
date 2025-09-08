@@ -1,47 +1,41 @@
-import { PuffLoader } from "react-spinners";
-import { getFurious } from "./api/furious";
-import Navbar from "./components/Navbar";
+import { createRouter, RouterProvider } from "@tanstack/react-router";
 
-import TimeLine from "./components/TimeLine";
-import { useQuery } from "@tanstack/react-query";
-import { useTimelineActions } from "./store/timeline";
-import { useEffect } from "react";
-import { getConfig } from "./api/config";
+// Import the generated route tree
+import { routeTree } from "./routeTree.gen";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useIsAuth } from "./store/auth";
 
-function App() {
-  const { configureWeeks } = useTimelineActions();
-  const { data: furious, isLoading } = useQuery({
-    queryKey: ["furious"],
-    queryFn: getFurious,
-  });
-  const { data: settings, isLoading: isLoadingSettings } = useQuery({
-    queryKey: ["settings"],
-    queryFn: getConfig,
-  });
-
-  useEffect(() => {
-    if (furious && settings) {
-      configureWeeks({
-        ...settings,
-        furious,
-      });
-    }
-  }, [furious, settings, configureWeeks]);
-
-  if (isLoading || isLoadingSettings) {
-    return (
-      <div className="min-h-screen w-full flex items-center justify-center">
-        <PuffLoader size={160} color="#3A2BC0" />
-      </div>
-    );
+// Register the router instance for type safety
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
   }
+}
+
+const router = createRouter({
+  routeTree,
+  basepath: "/verafurious",
+  context: {
+    auth: false,
+  },
+});
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
+});
+
+const App = () => {
+  const auth = useIsAuth();
 
   return (
-    <>
-      <Navbar />
-      <TimeLine />
-    </>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} context={{ auth }} />
+    </QueryClientProvider>
   );
-}
+};
 
 export default App;
