@@ -104,6 +104,16 @@ export const formatHomeOfficeDays = (days: number[]): string => {
     .join(", ");
 };
 
+/**
+ * Formats a date for use in an Outlook Web calendar deeplink, without a
+ * trailing "Z" so Outlook interprets it in the user's local timezone.
+ *
+ * @param date - The date to format.
+ * @returns The date formatted as `yyyy-MM-ddTHH:mm:ss`.
+ */
+export const formatOutlookDateTime = (date: Date): string =>
+  formatDate(date, "yyyy-MM-dd'T'HH:mm:ss");
+
 export const formatRange = (
   range: DateRange,
   ignoreWeekends: boolean = true
