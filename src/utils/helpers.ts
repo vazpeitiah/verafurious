@@ -79,6 +79,31 @@ export const customFormatDate = (date: Date) => {
   return formatDate(date, "PP", { locale: es });
 };
 
+const WEEKDAY_NAMES = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+
+/**
+ * Returns the Spanish name of a weekday given its ISO weekday number (1 = Lunes ... 7 = Domingo).
+ *
+ * @param day - The ISO weekday number.
+ * @returns The Spanish name of the weekday.
+ */
+export const getWeekdayName = (day: number): string => WEEKDAY_NAMES[day - 1];
+
+/**
+ * Formats a list of ISO weekday numbers into a comma-separated string of Spanish weekday names.
+ *
+ * @param days - The ISO weekday numbers (1 = Lunes ... 7 = Domingo).
+ * @returns A formatted string with the weekday names, or a fallback message if empty.
+ */
+export const formatHomeOfficeDays = (days: number[]): string => {
+  if (days.length === 0) return "Sin días asignados";
+  return days
+    .slice()
+    .sort((a, b) => a - b)
+    .map(getWeekdayName)
+    .join(", ");
+};
+
 export const formatRange = (
   range: DateRange,
   ignoreWeekends: boolean = true

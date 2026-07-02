@@ -1,10 +1,14 @@
 import { addWeeks } from "date-fns";
-import { Panda, User } from "lucide-react";
+import { Home, Panda, User } from "lucide-react";
 import { useState } from "react";
 
 import { furious } from "@furious";
 import { calculateFurious } from "@/utils/furious";
-import { formatRange, getWeekRangeFromDate } from "@/utils/helpers";
+import {
+  formatHomeOfficeDays,
+  formatRange,
+  getWeekRangeFromDate,
+} from "@/utils/helpers";
 
 // Un ciclo completo = número de furiosos en rotación
 const CYCLE = furious.length;
@@ -17,6 +21,10 @@ const TimeLine = () => {
   // Próximas semanas para completar el ciclo (excluyendo la actual)
   const nextWeeks = Array.from({ length: CYCLE - 1 }, (_, i) =>
     getWeekRangeFromDate(addWeeks(new Date(), i + 1))
+  );
+
+  const furiousWithHomeOffice = furious.filter(
+    (member) => member.homeOffice.length > 0
   );
 
   return (
@@ -71,6 +79,32 @@ const TimeLine = () => {
           ))}
         </ul>
       </section>
+
+      {/* Home office — días fijos por integrante */}
+      {furiousWithHomeOffice.length > 0 && (
+        <section className="flex flex-col gap-2">
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-base-content/50 px-1">
+            Home office
+          </h2>
+          <ul className="flex flex-col gap-2">
+            {furiousWithHomeOffice.map((member, i) => (
+              <li
+                key={member.ordinal}
+                className="animate-slide-in flex flex-row items-center justify-between gap-2 py-3 px-4 rounded-xl bg-base-200 hover:bg-base-300 transition-colors"
+                style={{ animationDelay: `${i * 55}ms` }}
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <Home size={16} className="text-base-content/40 shrink-0" />
+                  <span className="font-semibold truncate">{member.name}</span>
+                </div>
+                <span className="font-mono text-xs text-base-content/50 shrink-0 text-right">
+                  {formatHomeOfficeDays(member.homeOffice)}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
     </div>
   );

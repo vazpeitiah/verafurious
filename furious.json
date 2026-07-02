@@ -4,23 +4,28 @@
   "furious": [
     {
       "name": "Vladimir Azpeitia",
-      "ordinal": 1
+      "ordinal": 1,
+      "homeOffice": [5]
     },
     {
       "name": "Fabian Rojas",
-      "ordinal": 2
+      "ordinal": 2,
+      "homeOffice": []
     },
     {
       "name": "Raul Medina",
-      "ordinal":3
+      "ordinal":3,
+      "homeOffice": []
     },
     {
       "name": "Jair Baustista",
-      "ordinal": 4
-    }, 
+      "ordinal": 4,
+      "homeOffice": []
+    },
     {
       "name": "Eduardo Bautista",
-      "ordinal": 5
+      "ordinal": 5,
+      "homeOffice": [1]
     }
   ]
 }
