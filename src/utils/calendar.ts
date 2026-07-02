@@ -44,7 +44,7 @@ export const buildOutlookDailyUrl = (): string => {
     enddt: formatOutlookDateTime(end),
     subject: "Daily VeraFuriosos",
     location: "Microsoft Teams Meeting",
-    body: `Junta diaria del equipo. Únete aquí: ${meetingUrl}`,
+    body: `Conectar pantalla para la daily de veradat: ${meetingUrl}`,
   });
 
   return `https://outlook.office.com/calendar/deeplink/compose?${params.toString()}`;
@@ -121,7 +121,7 @@ export const buildDailyIcsFile = (
         `LOCATION:${escapeIcsText("Microsoft Teams Meeting")}`,
         foldIcsLine(
           `DESCRIPTION:${escapeIcsText(
-            `Junta diaria del equipo. Únete aquí: ${meetingUrl}`
+            `Conectar pantalla para la daily de veradat: ${meetingUrl}`
           )}`
         ),
         "END:VEVENT",
