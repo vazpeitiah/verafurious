@@ -13,18 +13,13 @@
       "homeOffice": [3]
     },
     {
-      "name": "Raul Medina",
-      "ordinal":3,
-      "homeOffice": []
-    },
-    {
       "name": "Jair Baustista",
-      "ordinal": 4,
+      "ordinal": 3,
       "homeOffice": []
     },
     {
       "name": "Eduardo Bautista",
-      "ordinal": 5,
+      "ordinal": 4,
       "homeOffice": [1]
     }
   ]
