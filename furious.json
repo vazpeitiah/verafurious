@@ -21,6 +21,16 @@
       "name": "Eduardo Bautista",
       "ordinal": 4,
       "homeOffice": [1]
+    },
+    {
+      "name": "Oscar Trejo",
+      "ordinal": 5,
+      "homeOffice": []
+    },
+    {
+      "name": "Dante Baños",
+      "ordinal": 6,
+      "homeOffice": []
     }
   ]
 }
